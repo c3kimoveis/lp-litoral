@@ -2,6 +2,7 @@
 # src/postgres/data
 # src/redis/data
 Assets/*
+assets_backup/*
 
 
 # Logs

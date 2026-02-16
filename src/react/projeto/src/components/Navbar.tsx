@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import logoImoveis from "@/assets/logo_c3k.png";
+import logoImoveis from "@/assets/logo_c3k.webp";
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
