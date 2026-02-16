@@ -324,7 +324,7 @@ const Index = () => {
               Investimento Inteligente e Rentável
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Números que comprovam o potencial de retorno na Praia dos Carneiros
+              Números que comprovam o potencial de retorno nas Praias do Litoral Sul de Pernambuco
             </p>
           </div>
 
@@ -434,7 +434,7 @@ const Index = () => {
               Empreendimentos <span className="text-primary">Exclusivos</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Conheça os lançamentos mais esperados de Praia dos Carneiros, projetados para máxima rentabilidade e
+              Conheça os lançamentos mais esperados das Praias do Litoral Sul de Pernambuco, projetados para máxima rentabilidade e
               conforto.
             </p>
           </div>
@@ -827,7 +827,7 @@ const Index = () => {
           <div className="text-center mb-12 md:mb-16">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-foreground">Perguntas Frequentes</h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Tire suas dúvidas sobre investimento em Carneiros
+              Tire suas dúvidas sobre investimento nas Praias do Litoral Sul de Pernambuco
             </p>
           </div>
 
@@ -850,7 +850,7 @@ const Index = () => {
                   Qual é a rentabilidade esperada?
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground">
-                  Com base no histórico dos empreendimentos DUE em Carneiros, a valorização média supera 30% ao ano. A
+                  Com base no histórico dos empreendimentos DUE nas Praias do Litoral Sul de Pernambuco, a valorização média supera 30% ao ano. A
                   rentabilidade através de locação de temporada pode chegar a 27% ao ano, com taxa média de ocupação de
                   56% e diárias que variam de R$ 500 a R$ 1.500 dependendo da tipologia.
                 </AccordionContent>
