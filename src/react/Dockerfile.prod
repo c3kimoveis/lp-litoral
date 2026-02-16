@@ -1,0 +1,49 @@
+# ==========================================
+# Dockerfile para PRODUÇÃO - Apenas Build
+# Sem Nginx interno (usando Nginx da VPS)
+# ==========================================
+
+FROM node:23-slim
+
+WORKDIR /app
+
+# Copiar arquivos de dependências primeiro (para cache layer)
+COPY projeto/package*.json ./
+COPY projeto/bun.lockb ./
+
+# Instalar TODAS as dependências (incluindo devDependencies para o build)
+RUN npm ci && \
+    npm cache clean --force
+
+# Copiar código fonte completo
+COPY projeto/ ./
+
+# Verificar se todos os arquivos necessários estão presentes
+RUN if [ ! -f "src/lib/utils.ts" ]; then \
+        echo "Criando arquivo utils.ts..." && \
+        mkdir -p src/lib && \
+        echo 'import { clsx, type ClassValue } from "clsx"; import { twMerge } from "tailwind-merge"; export function cn(...inputs: ClassValue[]) { return twMerge(clsx(inputs)); }' > src/lib/utils.ts; \
+    fi
+
+# Build da aplicação
+ARG VITE_API_URL
+ARG NODE_ENV=production
+ENV NODE_ENV=production
+
+# FORÇA BUILD DE PRODUÇÃO
+RUN echo "🔥 FORÇANDO BUILD DE PRODUÇÃO..." && \
+    rm -rf dist/ && \
+    NODE_ENV=production npm run build && \
+    echo "✅ Build concluído!" && \
+    ls -la dist/ && \
+    echo "📋 Verificando index.html do build:" && \
+    head -5 dist/index.html
+
+# Expor porta temporária para servir arquivos durante deploy
+EXPOSE 5173
+
+# Instalar servidor simples para servir arquivos durante o deploy
+RUN npm install -g serve
+
+# Servir arquivos estáticos temporariamente
+CMD ["serve", "-s", "dist", "-l", "5173"]

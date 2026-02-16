@@ -1,0 +1,201 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Ocean & Beach Colors */
+    --background: 40 30% 98%;
+    --foreground: 200 20% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 200 20% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 200 20% 15%;
+
+    /* Turquoise Ocean Primary */
+    --primary: 180 70% 45%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Luxury Gold Secondary */
+    --secondary: 45 65% 60%;
+    --secondary-foreground: 200 20% 15%;
+
+    /* Muted Beach Tones */
+    --muted: 40 20% 90%;
+    --muted-foreground: 200 25% 35%;
+
+    /* Ocean Accent */
+    --accent: 190 80% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    /* CTA Green */
+    --cta: 120 100% 39%;
+    --cta-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 180 20% 85%;
+    --input: 180 20% 92%;
+    --ring: 180 70% 45%;
+
+    --radius: 0.75rem;
+    
+    /* Custom gradients */
+    --gradient-ocean: linear-gradient(135deg, hsl(180, 70%, 45%), hsl(190, 80%, 50%));
+    --gradient-cta: linear-gradient(135deg, hsl(120, 100%, 39%), hsl(120, 100%, 50%));
+    --gradient-luxury: linear-gradient(135deg, hsl(45, 65%, 60%), hsl(40, 70%, 65%));
+    
+    /* Glass effect */
+    --glass-bg: rgba(255, 255, 255, 0.25);
+    --glass-border: rgba(255, 255, 255, 0.4);
+    --glass-bg-strong: rgba(255, 255, 255, 0.85);
+    --glass-border-strong: rgba(255, 255, 255, 0.9);
+    
+    /* Shadows */
+    --shadow-soft: 0 4px 24px rgba(0, 0, 0, 0.08);
+    --shadow-luxury: 0 8px 32px rgba(180, 150, 100, 0.15);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 200 30% 8%;
+    --foreground: 180 20% 95%;
+
+    --card: 200 25% 12%;
+    --card-foreground: 180 20% 95%;
+
+    --popover: 200 25% 12%;
+    --popover-foreground: 180 20% 95%;
+
+    --primary: 180 70% 45%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 45 65% 60%;
+    --secondary-foreground: 200 20% 15%;
+
+    --muted: 200 20% 20%;
+    --muted-foreground: 180 15% 70%;
+
+    --accent: 190 80% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --cta: 120 100% 39%;
+    --cta-foreground: 0 0% 100%;
+
+    --destructive: 0 62.8% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 200 20% 25%;
+    --input: 200 20% 25%;
+    --ring: 180 70% 45%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px; /* Compensa a altura da navbar fixa + margem */
+  }
+
+  /* Garante que elementos com IDs específicos tenham scroll suave */
+  #lead_form, #lead_form_mobile, #formulario-mobile {
+    scroll-margin-top: 100px;
+  }
+
+  /* Fallback para CSS-only scroll (caso JavaScript falhe) */
+  @media (max-width: 1023px) {
+    .scroll-to-form-link {
+      text-decoration: none;
+    }
+    .scroll-to-form-link:target {
+      scroll-margin-top: 120px;
+    }
+  }
+}
+
+@layer utilities {
+  .glass-effect {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+  }
+
+  .glass-effect-strong {
+    background: var(--glass-bg-strong);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border-strong);
+  }
+  
+  .gradient-ocean {
+    background: var(--gradient-ocean);
+  }
+  
+  .gradient-cta {
+    background: var(--gradient-cta);
+  }
+  
+  .gradient-luxury {
+    background: var(--gradient-luxury);
+  }
+  
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+  
+  .shadow-luxury {
+    box-shadow: var(--shadow-luxury);
+  }
+  
+  .pulse-green {
+    animation: pulse-green 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  @keyframes pulse-green {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+}

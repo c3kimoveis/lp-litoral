@@ -1,0 +1,20 @@
+{
+    "inputs": [
+    ],
+    "servers": {
+        "filesystem": {
+        "command": "docker",
+        "args": [
+            "run",
+            "-i",                                                                                                                                                                                                                                                                                                                                                                                                     
+            "--rm",
+            "--mount",
+            // Monte o workspace diretamente em /projects dentro do container
+            "type=bind,src=${workspaceFolder},dst=/projects",
+            "mcp/filesystem",
+            // Informe ao servidor que o diretório permitido é /projects
+            "/projects"
+        ]
+        }
+    }
+}

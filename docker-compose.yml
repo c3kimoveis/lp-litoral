@@ -1,0 +1,62 @@
+services:
+  react:
+    container_name: ${REACT_PROJECT_NAME}-dev-v${REACT_PROJECT_VERSION}
+    build:
+      context: ./src/react
+      dockerfile: ./Dockerfile.dev
+    volumes:
+      # Volume para o código fonte (hot-reload)
+      - ./src/react/projeto:/app
+      # Volume nomeado para node_modules (performance)
+      - react_node_modules:/app/node_modules
+    ports:
+      - "${REACT_HOST_PORT:-5173}:5173"
+    environment:
+      - NODE_ENV=development
+      - VITE_PORT=5173
+    env_file:
+      - ./src/react/projeto/.env
+    networks:
+      - app-network
+    stdin_open: true
+    tty: true
+    # depends_on:
+    #   django:
+    #     condition: service_started
+
+
+
+  # redis:
+  #   image: redis:7
+  #   container_name: redis
+  #   restart: unless-stopped
+  #   volumes:
+  #     - ./src/redis/data:/data
+  #   ports:
+  #     - "${REDIS_PORT:-6379}:6379"
+  #   networks:
+  #     - app-network
+
+  # celery:
+  #   container_name: celery
+  #   restart: unless-stopped
+  #   build:
+  #     context: ./src/celery
+  #     dockerfile: ./Dockerfile
+  #   command: ${CELERY_CMD}
+  #   volumes:
+  #     - ./src/celery:/app
+  #   env_file:
+  #     - .env
+  #   depends_on:
+  #     - redis
+  #   networks:
+  #     - app-network
+
+volumes:
+  react_node_modules:
+    driver: local
+
+networks:
+  app-network:
+    driver: bridge

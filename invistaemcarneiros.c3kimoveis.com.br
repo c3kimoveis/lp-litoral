@@ -1,0 +1,30 @@
+# HTTP -> HTTPS redirect
+server {
+    listen 80;
+    server_name invistaemcarneiros.c3kimoveis.com.br www.invistaemcarneiros.c3kimoveis.com.br;
+    return 301 https://$host$request_uri;
+}
+
+# HTTPS (site)
+server {
+    listen 443 ssl http2;
+    server_name invistaemcarneiros.c3kimoveis.com.br www.invistaemcarneiros.c3kimoveis.com.br;
+
+    root /app/aliases/invistaemcarneiros.c3kimoveis.com.br;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+
+    add_header X-Frame-Options "SAMEORIGIN" always;
+    add_header X-Debug-Test "simple-config" always;
+
+    access_log /var/log/nginx/c3k/invistaemcarneiros-access.log;
+    error_log  /var/log/nginx/c3k/invistaemcarneiros-error.log;
+
+    ssl_certificate /etc/letsencrypt/live/invistaemcarneiros.c3kimoveis.com.br/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/invistaemcarneiros.c3kimoveis.com.br/privkey.pem;
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+}
